@@ -7,6 +7,7 @@
 //
 
 #import "AttributorViewController.h"
+#import "AttributorTextStatsViewController.h"
 
 @interface AttributorViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *body;
@@ -30,6 +31,15 @@
     [super viewWillAppear:animated];
     [self usePreferredFonts];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredFontsChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Analyse Text"]) {
+        if ([segue.destinationViewController isKindOfClass:[AttributorTextStatsViewController class]]) {
+            AttributorTextStatsViewController* destination = (AttributorTextStatsViewController*) segue.destinationViewController;
+            destination.textToAnalyse = self.body.textStorage;
+        }
+    }
 }
 
 - (void) preferredFontsChanged:(NSNotification*) notification {
