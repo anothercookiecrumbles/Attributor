@@ -20,6 +20,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:self.outlineButton.currentTitle];
     [title setAttributes:@{ NSStrokeWidthAttributeName: @3,
                             NSStrokeColorAttributeName: self.outlineButton.tintColor}
